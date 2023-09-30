@@ -26,6 +26,10 @@ class Player:
                 self.points += 4
             elif card.rank == "King":
                 self.points += 3
+            elif card.rank == "Queen":
+                self.points += 2
+            elif card.rank == "Jack":
+                self.points += 1
             
         
     def __repr__(self):
