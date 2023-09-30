@@ -22,21 +22,11 @@ class runBridgeGame():
     def outputHand(self, player):
         return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
 
-    def fromContract(self):
-        # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
-        # put string output into userinput variable
-        userInput = input("click suit button")
-
-        userInput = userInput.lower()
-        if "no trump" in userInput:
-            self.numTricks = 9
-        elif "spades" in userInput or "hearts" in userInput:
-            self.numTricks = 10
-        elif "clubs" in userInput or "diamonds" in userInput:
-            self.numTricks = 11
-
     def trickRound(self, startingPlayer):
-        startingPlayer % 4
+        previousSuit = self.players[startingPlayer % 4].playTrick("n")
+        self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
+        self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
+        self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
 
     def startGame(self):
         deck = Deck()
@@ -49,7 +39,7 @@ class runBridgeGame():
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
         
-        self.fromContract()
+        self.teams[self.declaringSide][self.declarer].fromContract()
 
         self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
 
