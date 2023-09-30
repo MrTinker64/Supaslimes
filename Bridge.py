@@ -1,5 +1,6 @@
 from GamePlayers import BridgePlayer
 from Deck import Deck
+import random
 
 class runBridgeGame():
     players = []
@@ -17,8 +18,5 @@ class runBridgeGame():
     deck = Deck()
     deck.shuffle()
 
-    for player in players:
-        player.receive_cards(deck.draw(13))
-
-    def Ai_turn(player):
-        return(random.choice(player_hand))
+def Ai_turn(player):
+    return(random.choice(cards))
