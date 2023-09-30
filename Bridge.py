@@ -11,12 +11,11 @@ class runBridgeGame():
             BridgePlayer(playerNames[2]),
             BridgePlayer(playerNames[3]),
         ]
-
     teams = [[players[0], players[2]], [players[1], players[3]]]
-
-
-    deck = Deck()
-    deck.shuffle()
+    
+    def startGame():
+        deck = Deck()
+        deck.shuffle()
 
 def Ai_turn(player):
     return(random.choice(cards))
