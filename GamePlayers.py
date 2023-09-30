@@ -13,3 +13,20 @@ class BridgePlayer(Player):
             elif card.rank == "Jack":
                 initialPoints += 1
         return initialPoints
+
+                
+class HeartsPlayer(Player):
+    def __init__(self, name):
+        super().__init__(name)
+        self.tricks = []
+    
+    def recieve_trick(self, trick):
+        self.tricks += trick
+        
+    def count_points(self):
+        for card in self.tricks:
+            if card.suit == "Heart":
+                self.points += 1
+            if card == "Queen of Spades":
+                self.points += 13
+            self.tricks.clear()

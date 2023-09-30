@@ -36,7 +36,10 @@ class Deck:
 
 if __name__ == "__main__":
     # Example usage:
-    deck = Deck()
-    deck.shuffle()
-    cards = deck.draw(1)
-    print(cards)
+    card = Card("Spades", "Ace")
+    rank, of, suit = input("Card: ").split()
+    card2 = Card(suit, rank)
+    if card.__dict__ == card2.__dict__:
+        print("Yay!")
+    else:
+        print("Boo :(")
