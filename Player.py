@@ -18,17 +18,6 @@ class Player:
         
     def sort_hand(self):
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
-        
-    def add_points_from_hand(self):
-        for card in self.hand:
-            if card.rank == "Ace":
-                self.points += 4
-            elif card.rank == "King":
-                self.points += 3
-            elif card.rank == "Queen":
-                self.points += 2
-            elif card.rank == "Jack":
-                self.points += 1
                 
     def add_points(self, points):
         self.points += points

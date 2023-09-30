@@ -1,11 +1,11 @@
-from Player import Player
+from GamePlayers import BridgePlayer
 from Deck import Deck
 
 players = [
-    Player(),
-    Player(),
-    Player(),
-    Player(),
+    BridgePlayer(),
+    BridgePlayer(),
+    BridgePlayer(),
+    BridgePlayer(),
 ]
 
 teams = [[players[0], players[2]], [players[1], players[3]]]
