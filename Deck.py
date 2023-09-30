@@ -34,5 +34,5 @@ if __name__ == "__main__":
     # Example usage:
     deck = Deck()
     deck.shuffle()
-    card = deck.draw(1)
-    print(card)
+    cards = deck.draw(1)
+    print(cards)

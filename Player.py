@@ -19,7 +19,7 @@ class Player:
     def sort_hand(self):
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
         
-    def points_from_hand(self):
+    def add_points_from_hand(self):
         for card in self.hand:
             if card.rank == "Ace":
                 self.points += 4
@@ -42,5 +42,6 @@ if __name__ == "__main__":
     deck.shuffle()
     player1.receive_cards(deck.draw(13))
     player1.sort_hand()
+    player1.add_points_from_hand()
     print(player1)
         
