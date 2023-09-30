@@ -12,7 +12,7 @@ class runBridgeGame():
             BridgePlayer(playerNames[2]),
             BridgePlayer(playerNames[3]),
         ]
-    teams = [[players[0], players[2]], [players[1], players[3]]]
+        teams = [[self.players[0], self.players[2]], [self.players[1], self.players[3]]]
 
     def startGame(self):
         deck = Deck()
@@ -31,4 +31,3 @@ if __name__ == "__main__":
     bridgeGame = runBridgeGame(["1", "2", "3", "4"])
     bridgeGame.startGame()
     bridgeGame.AI_turn(1)
-
