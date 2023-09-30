@@ -18,11 +18,14 @@ class Deck:
     def shuffle(self):
         random.shuffle(self.cards)
 
-    def draw(self):
-        if self.cards:
-            return self.cards.pop()
-        else:
-            raise ValueError("Deck is empty!")
+    def draw(self, numberOfCards):
+        drawnCards = []
+        for i in range(numberOfCards):
+            if self.cards:
+                drawnCards += self.cards.pop()
+            else:
+                raise ValueError("Deck is empty!")
+        return drawnCards
 
     def __repr__(self):
         return f"Deck({self.cards})"
