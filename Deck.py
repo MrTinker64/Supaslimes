@@ -9,7 +9,7 @@ class Card:
         return f"{self.rank} of {self.suit}"
 
 class Deck:
-    SUITS = ["Hearts", "Diamonds", "Clubs", "Spades"]
+    SUITS = ["Clubs", "Diamonds", "Hearts", "Spades"]
     RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
 
     def __init__(self):
