@@ -17,7 +17,6 @@ class Player:
             raise ValueError(f"{card} not in player's hand!")
         
     def sort_hand(self):
-        # This assumes the Card class has a method to determine its order.
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)))
         
     def points_from_hand(self):
@@ -30,7 +29,9 @@ class Player:
                 self.points += 2
             elif card.rank == "Jack":
                 self.points += 1
-            
+                
+    def add_points(self, points):
+        self.points += points
         
     def __repr__(self):
         return f"{self.name}, {self.points} points: {self.hand}"
@@ -39,8 +40,7 @@ if __name__ == "__main__":
     deck = Deck()
     player1 = Player("Avi")
     deck.shuffle()
-    for _ in range(13):
-        player1.receive_card(deck.draw())
+    player1.receive_cards(deck.draw(13))
     player1.sort_hand()
     print(player1)
         
