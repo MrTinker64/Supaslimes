@@ -1,5 +1,7 @@
 from Deck import Deck
-
+player_points=0
+dealer_points=0
+print(player_points)
 #game code begins
 class Blackjack:
     def __init__(self):
@@ -78,24 +80,27 @@ class Blackjack:
 
         if player_value > 21:
             print("Player busts! Dealer wins.")
-            #player_points+=1
+            player_points+=1
         elif dealer_value > 21:
             print("Dealer busts! Player wins.")
-            #dealer_points+=1
+            dealer_points+=1
         elif player_value > dealer_value:
             print("Player wins!")
-            #player_points+=1
+            player_points+=1
         elif dealer_value > player_value:
             print("Dealer wins.")
-            #dealer_points+=1
+            dealer_points+=1
         else:
             print("It's a tie!")
-            #player_points+=0.5
-            #dealer_points+=0.5
-#player_points=0
-#dealer_points=0
-if __name__ == "__main__":
-    game = Blackjack()
-    game.play()
-    #print("player points: " + str(player_points))
-    #print("dealer points: " + str(dealer_points))
+            player_points+=0.5
+            dealer_points+=0.5
+play_again="Yes"
+while play_again=="Yes":
+    if __name__ == "__main__":
+        game = Blackjack()
+        game.play()
+        print("player points: " + str(player_points))
+        print("dealer points: " + str(dealer_points))
+        play_again=input("Do you want to play again ('Yes' or 'No')?")
+print("dealer: " + str(dealer_points))
+print("player: " + str(player_points))
