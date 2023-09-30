@@ -6,6 +6,7 @@ import random
 class runBridgeGame():
     players = []
     teams = []
+    teamIndexes = [[0, 2], [1, 3]]
     def __init__(self, playerNames):
         self.players = [
             BridgePlayer(playerNames[0]),
@@ -21,6 +22,9 @@ class runBridgeGame():
     def outputHand(self, player):
         return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
 
+    def fromContract(self):
+        pass
+
     def startGame(self):
         deck = Deck()
         while self.initialTeamPointSum(0) == self.initialTeamPointSum(1):
@@ -30,7 +34,7 @@ class runBridgeGame():
                 player.receive_cards(deck.draw(13))
                 player.sort_hand()
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
-            self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
+            self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
         # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
         # put string output into userinput variable
         userInput = ""
@@ -42,6 +46,8 @@ class runBridgeGame():
             self.numTricks = 10
         elif "clubs" in userInput or "diamonds" in userInput:
             self.numTricks = 11
+
+        startingPlayer = self.teamIndexes[self.declaringSide][self.declarer]
 
 
     def AI_turn_easy(self,player_number):
