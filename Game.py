@@ -14,7 +14,7 @@ deck = Deck()
 deck.shuffle()
 
 for player in players:
-    player.recieve_card(deck.draw(13))
+    player.recieve_cards(deck.draw(13))
 
 
 

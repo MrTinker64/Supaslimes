@@ -6,8 +6,8 @@ class Player:
         self.hand = []  # This will hold the player's cards.
         self.points = 0
         
-    def receive_card(self, card):
-        self.hand.append(card)
+    def receive_cards(self, cards):
+        self.hand += cards
         
     def play_card(self, card):
         if card in self.hand:
