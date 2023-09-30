@@ -17,11 +17,12 @@ class runBridgeGame():
 
     def startGame(self):
         deck = Deck()
-        
-        deck.shuffle()
-        for player in self.players:
-            player.receive_cards(deck.draw(13))
-        self.declaringSide = 0 if sum(self.teams[0]) > sum(self.teams[1]) else 1
+        while sum(self.teams[0]) == sum(self.teams[1]):
+            deck.resetDeck()
+            deck.shuffle()
+            for player in self.players:
+                player.receive_cards(deck.draw(13))
+            self.declaringSide = 0 if sum(self.teams[0]) > sum(self.teams[1]) else 1
 
 
     def AI_turn(player):
