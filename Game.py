@@ -16,6 +16,5 @@ deck.shuffle()
 for player in players:
     player.receive_cards(deck.draw(13))
 
-
-
-
+#def Ai_turn(player):
+ #   return(random.choice(player_hand))

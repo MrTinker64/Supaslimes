@@ -2,7 +2,7 @@
 import random
 import Deck
 import Player
-hand=self.hand
+import Game
 
-def Ai_turn(hand):
-    return(random.choice(hand))
+def Ai_turn(player):
+    return(random.choice(player_hand))
