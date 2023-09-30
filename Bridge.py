@@ -18,6 +18,9 @@ class runBridgeGame():
     def initialTeamPointSum(self, teamNumber):
         return self.teams[teamNumber][0].add_points_from_hand() + self.teams[teamNumber][1].add_points_from_hand()
 
+    def outputHand(self, player):
+        return player.hand.join(", ")
+
     def startGame(self):
         deck = Deck()
         while self.initialTeamPointSum(0) == self.initialTeamPointSum(1):
@@ -27,7 +30,7 @@ class runBridgeGame():
                 player.receive_cards(deck.draw(13))
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
-        # needs to show declarer other team person's hand and then let them choose suit
+        # needs to show declarer other team person's hand and then let them choose suit or no suit
         
 
 
