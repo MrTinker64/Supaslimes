@@ -31,8 +31,17 @@ class runBridgeGame():
                 player.sort_hand()
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
-        # needs to show declarer other team person's hand and then let them choose suit or no suit
-        
+        # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
+        # put string output into userinput variable
+        userInput = ""
+
+        userInput = userInput.lower()
+        if "no trump" in userInput:
+            self.numTricks = 9
+        elif "spades" in userInput or "hearts" in userInput:
+            self.numTricks = 10
+        elif "clubs" in userInput or "diamonds" in userInput:
+            self.numTricks = 11
 
 
     def AI_turn_easy(self,player_number):
