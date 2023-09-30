@@ -12,10 +12,13 @@ class runBridgeGame():
             BridgePlayer(playerNames[3]),
         ]
     teams = [[players[0], players[2]], [players[1], players[3]]]
-    
-    def startGame():
+
+    def startGame(self):
         deck = Deck()
         deck.shuffle()
+        for player in self.players:
+            player.receive_cards(deck.draw(13))
+
 
 def Ai_turn(player):
     return(random.choice(cards))
