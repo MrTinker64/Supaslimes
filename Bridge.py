@@ -5,6 +5,7 @@ import random
 
 class runBridgeGame():
     players = []
+    teams = []
     def __init__(self, playerNames):
         self.players = [
             BridgePlayer(playerNames[0]),
@@ -12,7 +13,7 @@ class runBridgeGame():
             BridgePlayer(playerNames[2]),
             BridgePlayer(playerNames[3]),
         ]
-        teams = [[self.players[0], self.players[2]], [self.players[1], self.players[3]]]
+        self.teams = [[self.players[0], self.players[2]], [self.players[1], self.players[3]]]
 
     def startGame(self):
         deck = Deck()
