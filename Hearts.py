@@ -37,11 +37,13 @@ def trick(starting_index):
             player_to_win_trick = player
     
     player_to_win_trick.recieve_trick(trick)
-    print(trick)
     print("Player who won: ", player_to_win_trick.name)
+    print(trick)
     trick.clear
 
 trick(players.index(starting_player))
 for player in players:
     player.count_points
     print(player.name, player.points)
+    
+# of Spades
