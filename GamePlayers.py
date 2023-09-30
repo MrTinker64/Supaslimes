@@ -21,6 +21,7 @@ class BridgePlayer(Player):
         userInput = input("enter suit (S, H, C, D) or n for no suit: ")
 
         userInput = userInput.lower().strip()
+        suit = "None"
         if "s" == userInput:
             suit = "Spades"
         elif "c" == userInput:
@@ -38,6 +39,7 @@ class BridgePlayer(Player):
 
             return trickCard
         else:
+            trickCard = random.choice(self.hand)
             # have them pick a card from their hand
             # require them to pick a card with suit matching suit variable
             return trickCard
