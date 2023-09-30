@@ -13,7 +13,6 @@ class runBridgeGame():
             BridgePlayer(playerNames[3]),
         ]
     teams = [[players[0], players[2]], [players[1], players[3]]]
-    declaringSide = 0
 
     def startGame(self):
         deck = Deck()
@@ -25,5 +24,11 @@ class runBridgeGame():
             self.declaringSide = 0 if sum(self.teams[0]) > sum(self.teams[1]) else 1
 
 
-    def AI_turn(player):
-        Player.play_card(player, random.choice(Player.cards))
+    def AI_turn(self,player_number):
+        self.players[player_number].play_card(random.choice(self.players[player_number].hand))
+
+if __name__ == "__main__":
+    bridgeGame = runBridgeGame(["1", "2", "3", "4"])
+    bridgeGame.startGame()
+    bridgeGame.AI_turn(1)
+
