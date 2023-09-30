@@ -15,14 +15,17 @@ class runBridgeGame():
         ]
         self.teams = [[self.players[0], self.players[2]], [self.players[1], self.players[3]]]
 
+    def initialTeamPointSum(self, teamNumber):
+        return self.teams[teamNumber][0].add_points_from_hand() + self.teams[teamNumber][1].add_points_from_hand()
+
     def startGame(self):
         deck = Deck()
-        while sum(self.teams[0]) == sum(self.teams[1]):
+        while self.initialTeamPointSum(0) == self.initialTeamPointSum(1):
             deck.resetDeck()
             deck.shuffle()
             for player in self.players:
                 player.receive_cards(deck.draw(13))
-            self.declaringSide = 0 if sum(self.teams[0]) > sum(self.teams[1]) else 1
+            self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
 
 
     def AI_turn(self,player_number):

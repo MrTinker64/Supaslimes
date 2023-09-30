@@ -2,12 +2,14 @@ from Player import Player
 
 class BridgePlayer(Player):
     def add_points_from_hand(self):
+        initialPoints = 0
         for card in self.hand:
             if card.rank == "Ace":
-                self.points += 4
+                initialPoints += 4
             elif card.rank == "King":
-                self.points += 3
+                initialPoints += 3
             elif card.rank == "Queen":
-                self.points += 2
+                initialPoints += 2
             elif card.rank == "Jack":
-                self.points += 1
+                initialPoints += 1
+        return initialPoints
