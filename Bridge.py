@@ -23,10 +23,20 @@ class runBridgeGame():
         return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
 
     def trickRound(self, startingPlayer):
-        previousSuit = self.players[startingPlayer % 4].playTrick("n")
-        self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
-        self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
-        self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
+        card1 = self.players[startingPlayer % 4].playTrick("n")
+        previousSuit = card1.suit
+        card2 = self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
+        card3 = self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
+        card4 = self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
+        cardsPlayed = [card1, card2, card3, card4]
+        cardValues = []
+        for card in cardsPlayed:
+            if card.suit == self.alephSuit:
+                cardValues.append(Deck.RANKS.index(card.rank) + 20)
+            elif card.suit == previousSuit:
+                cardValues.append(Deck.RANKS.index(card.rank))
+            else:
+                cardValues.append(0)
         
 
     def startGame(self):
@@ -40,7 +50,7 @@ class runBridgeGame():
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
         
-        self.teams[self.declaringSide][self.declarer].fromContract()
+        self.alephSuit = self.teams[self.declaringSide][self.declarer].fromContract()
 
         self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
 

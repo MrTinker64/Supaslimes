@@ -21,13 +21,15 @@ class BridgePlayer(Player):
         userInput = input("enter suit (S, H, C, D) or n for no suit: ")
 
         userInput = userInput.lower().strip()
-        if "s" == userInput or "h" == userInput:
-            numTricks = 10
-        elif "c" == userInput or "d" == userInput:
-           numTricks = 11
-        else:
-            numTricks = 9
-        return numTricks
+        if "s" == userInput:
+            suit = "Spades"
+        elif "c" == userInput:
+           suit = "Clubs"
+        elif "h" == userInput:
+           suit = "Hearts"
+        elif "d" == userInput:
+           suit = "Diamonds"
+        return suit
     
     def playTrick(self, suit):
         if suit == "n":
