@@ -1,5 +1,5 @@
-import Player
-import Deck
+from Player import Player
+from Deck import Deck
 
 players = [
     Player(),
