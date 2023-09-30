@@ -1,7 +1,4 @@
 from Deck import Deck
-player_points=0
-dealer_points=0
-print(player_points)
 #game code begins
 class Blackjack:
     def __init__(self):
@@ -78,6 +75,9 @@ class Blackjack:
         player_value = self.calculate_hand_value(self.player_hand)
         dealer_value = self.calculate_hand_value(self.dealer_hand)
 
+        global player_points
+        global dealer_points
+
         if player_value > 21:
             print("Player busts! Dealer wins.")
             player_points+=1
@@ -94,6 +94,8 @@ class Blackjack:
             print("It's a tie!")
             player_points+=0.5
             dealer_points+=0.5
+player_points=0
+dealer_points=0
 play_again="Yes"
 while play_again=="Yes":
     if __name__ == "__main__":
@@ -104,3 +106,9 @@ while play_again=="Yes":
         play_again=input("Do you want to play again ('Yes' or 'No')?")
 print("dealer: " + str(dealer_points))
 print("player: " + str(player_points))
+if dealer_points>player_points:
+    print("DEALER WINS, BOZO!!!")
+elif dealer_points==player_points:
+    print("UNSATISFYING TIE (a bit lame)")
+else:
+    print("CONGRATULATIONS!!! YOU WIN!!!")
