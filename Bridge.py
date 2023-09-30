@@ -26,6 +26,9 @@ class runBridgeGame():
             for player in self.players:
                 player.receive_cards(deck.draw(13))
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
+            self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
+        # needs to show declarer other team person's hand and then let them choose suit
+        
 
 
     def AI_turn_easy(self,player_number):
