@@ -22,4 +22,4 @@ class runBridgeGame():
 
 
     def AI_turn(player):
-        play_card(player, random.choice(cards))
+        Player.play_card(player, random.choice(Player.cards))
