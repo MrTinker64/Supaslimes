@@ -1,20 +1,17 @@
 import discord
 import os
-import dotenv
-from discord.ext import commands
-
-load_dotenv()
-TOKEN = os.getenv('MTE1NzcyNDY2NzMyNzU1MzY4Ng.GpAVLD.sKXn_29n700ELWV9tcVmTUOIdR6Jz-S0E-1Wdo')
+from secretkey import TOKEN
 
 intents = discord.Intents(messages=True, guilds=True)
+client = discord.Client(intents=intents)
 
-
-
-bot = commands.Bot(command_prefix='!', intents=intents)
-
-@bot.event
+@client.event
 async def on_message(message):
-    if message.content == "$bridge":
-        await message.channel.send("hey dirtbag")
+    if message.content.startswith('$bridge'):
+        channel = message.channel
+        await channel.send("hey dirtbag")
 
-bot.run(TOKEN)
+def handle_response(msg) -> str:
+    message = message.lower()
+
+client.run(TOKEN)
