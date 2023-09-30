@@ -27,6 +27,7 @@ class runBridgeGame():
         self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
         self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
         self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
+        
 
     def startGame(self):
         deck = Deck()

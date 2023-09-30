@@ -38,7 +38,7 @@ class BridgePlayer(Player):
         else:
             # have them pick a card from their hand
             # require them to pick a card with suit matching suit variable
-            pass
+            return trickCard
 
         
 
