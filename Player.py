@@ -17,7 +17,7 @@ class Player:
             raise ValueError(f"{card} not in player's hand!")
         
     def sort_hand(self):
-        self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)))
+        self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
         
     def points_from_hand(self):
         for card in self.hand:
