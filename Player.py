@@ -15,8 +15,8 @@ class Player:
                 self.hand.remove(card_in_hand)
                 print("Yay!")
                 return card
-            else:
-                raise ValueError(f"{card} not in player's hand!")
+        
+        raise ValueError(f"{card} not in player's hand!")
         
     def sort_hand(self):
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
@@ -34,7 +34,8 @@ if __name__ == "__main__":
     player1.sort_hand()
     
     rank, of, suit = input(f"{player1}, play a card: ").split()
+    print(f"-{rank}-")
+    print(f"-{of}-")
+    print(f"-{suit}-")
     player1.play_card(Card(suit, rank))
     
-    rank, of, suit = input(f"{player1}, play a card: ").split()
-    player1.play_card(Card(suit, rank))
