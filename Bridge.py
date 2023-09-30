@@ -1,13 +1,15 @@
 from GamePlayers import BridgePlayer
 from Deck import Deck
 
-def runBridge():
-    players = [
-        BridgePlayer(),
-        BridgePlayer(),
-        BridgePlayer(),
-        BridgePlayer(),
-    ]
+class runBridgeGame():
+    players = []
+    def __init__(self, playerNames):
+        self.players = [
+            BridgePlayer(playerNames[0]),
+            BridgePlayer(playerNames[1]),
+            BridgePlayer(playerNames[2]),
+            BridgePlayer(playerNames[3]),
+        ]
 
     teams = [[players[0], players[2]], [players[1], players[3]]]
 
