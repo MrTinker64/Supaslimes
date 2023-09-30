@@ -15,6 +15,10 @@ class Deck:
     def __init__(self):
         self.cards = [Card(suit, rank) for suit in self.SUITS for rank in self.RANKS]
 
+    def resetDeck(self):
+        self.cards.clear
+        self.cards = [Card(suit, rank) for suit in self.SUITS for rank in self.RANKS]
+
     def shuffle(self):
         random.shuffle(self.cards)
 

@@ -15,6 +15,9 @@ class Player:
             return card
         else:
             raise ValueError(f"{card} not in player's hand!")
+    
+    def resetHand(self):
+        self.hand = []
         
     def sort_hand(self):
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
