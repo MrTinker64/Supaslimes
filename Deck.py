@@ -29,7 +29,7 @@ class Deck:
 
 if __name__ == "__main__":
     # Example usage:
-    # deck = Deck()
-    # deck.shuffle()
-    card = Card("Hearts", "5")
+    deck = Deck()
+    deck.shuffle()
+    card = deck.draw()
     print(card)
