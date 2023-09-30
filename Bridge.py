@@ -28,10 +28,10 @@ class runBridgeGame():
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
 
 
-    def AI_turn(self,player_number):
+    def AI_turn_easy(self,player_number):
         self.players[player_number].play_card(random.choice(self.players[player_number].hand))
 
 if __name__ == "__main__":
     bridgeGame = runBridgeGame(["1", "2", "3", "4"])
     bridgeGame.startGame()
-    bridgeGame.AI_turn(1)
+    bridgeGame.AI_turn_easy(1)
