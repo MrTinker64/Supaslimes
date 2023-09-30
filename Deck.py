@@ -22,7 +22,7 @@ class Deck:
         drawnCards = []
         for i in range(numberOfCards):
             if self.cards:
-                drawnCards += self.cards.pop()
+                drawnCards.append(self.cards.pop())
             else:
                 raise ValueError("Deck is empty!")
         return drawnCards
@@ -34,5 +34,5 @@ if __name__ == "__main__":
     # Example usage:
     deck = Deck()
     deck.shuffle()
-    card = deck.draw()
+    card = deck.draw(1)
     print(card)
