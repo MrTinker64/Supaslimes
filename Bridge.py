@@ -23,7 +23,20 @@ class runBridgeGame():
         return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
 
     def fromContract(self):
-        pass
+        # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
+        # put string output into userinput variable
+        userInput = input("click suit button")
+
+        userInput = userInput.lower()
+        if "no trump" in userInput:
+            self.numTricks = 9
+        elif "spades" in userInput or "hearts" in userInput:
+            self.numTricks = 10
+        elif "clubs" in userInput or "diamonds" in userInput:
+            self.numTricks = 11
+
+    def trickRound(self, startingPlayer):
+        startingPlayer % 4
 
     def startGame(self):
         deck = Deck()
@@ -35,19 +48,10 @@ class runBridgeGame():
                 player.sort_hand()
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
-        # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
-        # put string output into userinput variable
-        userInput = ""
+        
+        self.fromContract()
 
-        userInput = userInput.lower()
-        if "no trump" in userInput:
-            self.numTricks = 9
-        elif "spades" in userInput or "hearts" in userInput:
-            self.numTricks = 10
-        elif "clubs" in userInput or "diamonds" in userInput:
-            self.numTricks = 11
-
-        startingPlayer = self.teamIndexes[self.declaringSide][self.declarer]
+        self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
 
 
     def AI_turn_easy(self,player_number):
