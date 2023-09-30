@@ -4,6 +4,16 @@ class Card:
     def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
+        if rank == "Ace":
+            self.numrank = 14
+        elif rank == "King":
+            self.numrank = 13
+        elif rank == "Queen":
+            self.numrank = 12
+        elif rank == "Jack":
+            self.numrank = 11
+        else:
+            self.numrank = int(rank)
 
     def __repr__(self):
         return f"{self.rank} of {self.suit}"
