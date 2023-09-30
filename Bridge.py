@@ -19,7 +19,7 @@ class runBridgeGame():
         return self.teams[teamNumber][0].add_points_from_hand() + self.teams[teamNumber][1].add_points_from_hand()
 
     def outputHand(self, player):
-        return player.hand.join(", ")
+        return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
 
     def startGame(self):
         deck = Deck()
@@ -28,6 +28,7 @@ class runBridgeGame():
             deck.shuffle()
             for player in self.players:
                 player.receive_cards(deck.draw(13))
+                player.sort_hand()
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
         # needs to show declarer other team person's hand and then let them choose suit or no suit
@@ -40,4 +41,5 @@ class runBridgeGame():
 if __name__ == "__main__":
     bridgeGame = runBridgeGame(["1", "2", "3", "4"])
     bridgeGame.startGame()
+    print(bridgeGame.outputHand(1))
     bridgeGame.AI_turn_easy(1)
