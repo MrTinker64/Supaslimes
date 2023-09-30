@@ -1,4 +1,4 @@
-from Deck import Deck
+from Deck import Deck, Card
 
 class Player:
     def __init__(self, name):
@@ -10,14 +10,13 @@ class Player:
         self.hand += cards
         
     def play_card(self, card):
-        if card in self.hand:
-            self.hand.remove(card)
-            return card
-        else:
-            raise ValueError(f"{card} not in player's hand!")
-    
-    def resetHand(self):
-        self.hand = []
+        for card_in_hand in self.hand:
+            if card.__dict__ == card_in_hand.__dict__:
+                self.hand.remove(card_in_hand)
+                print("Yay!")
+                return card
+            else:
+                raise ValueError(f"{card} not in player's hand!")
         
     def sort_hand(self):
         self.hand.sort(key=lambda card: (Deck.SUITS.index(card.suit), Deck.RANKS.index(card.rank)), reverse=True)
@@ -31,9 +30,11 @@ class Player:
 if __name__ == "__main__":
     deck = Deck()
     player1 = Player("Avi")
-    deck.shuffle()
     player1.receive_cards(deck.draw(13))
     player1.sort_hand()
-    player1.add_points_from_hand()
-    print(player1)
-        
+    
+    rank, of, suit = input(f"{player1}, play a card: ").split()
+    player1.play_card(Card(suit, rank))
+    
+    rank, of, suit = input(f"{player1}, play a card: ").split()
+    player1.play_card(Card(suit, rank))

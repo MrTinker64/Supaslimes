@@ -6,6 +6,7 @@ import random
 class runBridgeGame():
     players = []
     teams = []
+    teamIndexes = [[0, 2], [1, 3]]
     def __init__(self, playerNames):
         self.players = [
             BridgePlayer(playerNames[0]),
@@ -18,6 +19,15 @@ class runBridgeGame():
     def initialTeamPointSum(self, teamNumber):
         return self.teams[teamNumber][0].add_points_from_hand() + self.teams[teamNumber][1].add_points_from_hand()
 
+    def outputHand(self, player):
+        return ", ".join([f"{card.rank} of {card.suit}" for card in self.players[player].hand])
+
+    def trickRound(self, startingPlayer):
+        previousSuit = self.players[startingPlayer % 4].playTrick("n")
+        self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
+        self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
+        self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
+
     def startGame(self):
         deck = Deck()
         while self.initialTeamPointSum(0) == self.initialTeamPointSum(1):
@@ -25,10 +35,13 @@ class runBridgeGame():
             deck.shuffle()
             for player in self.players:
                 player.receive_cards(deck.draw(13))
+                player.sort_hand()
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
-            self.declarer = self.teams[self.declaringSide][0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1]
-        # needs to show declarer other team person's hand and then let them choose suit
+            self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
         
+        self.teams[self.declaringSide][self.declarer].fromContract()
+
+        self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
 
 
     def AI_turn_easy(self,player_number):
@@ -37,4 +50,5 @@ class runBridgeGame():
 if __name__ == "__main__":
     bridgeGame = runBridgeGame(["1", "2", "3", "4"])
     bridgeGame.startGame()
+    print(bridgeGame.outputHand(1))
     bridgeGame.AI_turn_easy(1)

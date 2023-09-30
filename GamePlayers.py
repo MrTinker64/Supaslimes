@@ -1,4 +1,5 @@
 from Player import Player
+import random
 
 class BridgePlayer(Player):
     def add_points_from_hand(self):
@@ -13,3 +14,47 @@ class BridgePlayer(Player):
             elif card.rank == "Jack":
                 initialPoints += 1
         return initialPoints
+    
+    def fromContract(self):
+        # needs to show declarer other team person's hand and then let them choose suit or no suit and part-score or game
+        # put string output into userinput variable
+        userInput = input("enter suit (S, H, C, D) or n for no suit: ")
+
+        userInput = userInput.lower().strip()
+        if "s" == userInput or "h" == userInput:
+            numTricks = 10
+        elif "c" == userInput or "d" == userInput:
+           numTricks = 11
+        else:
+            numTricks = 9
+        return numTricks
+    
+    def playTrick(self, suit):
+        if suit == "n":
+            # kyle have them pick a card from their hand
+            trickCard = random.choice(self.hand)
+
+            return trickCard
+        else:
+            # have them pick a card from their hand
+            # require them to pick a card with suit matching suit variable
+            pass
+
+        
+
+                
+class HeartsPlayer(Player):
+    def __init__(self, name):
+        super().__init__(name)
+        self.tricks = []
+    
+    def recieve_trick(self, trick):
+        self.tricks += trick
+        
+    def count_points(self):
+        for card in self.tricks:
+            if card.suit == "Heart":
+                self.points += 1
+            if card == "Queen of Spades":
+                self.points += 13
+            self.tricks.clear()
