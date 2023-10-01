@@ -12,3 +12,7 @@ def respond(msg):
             return(f'{players_game[1]} Started! Good luck players!')
     else:
         return("Please input a valid game and 4 players!")
+
+
+if __name__ == "__main__":
+    respond("$bridge initialize game bridge a b c d")
