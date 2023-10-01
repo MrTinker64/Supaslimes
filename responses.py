@@ -13,5 +13,3 @@ def respond(msg) -> str:
             return(f'{players_game[1]} Started! Good luck players!')
         else:
             return("Please input a valid game and 4 players!")
-        
-        if players_game 

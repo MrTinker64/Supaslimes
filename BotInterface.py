@@ -1,17 +1,36 @@
 import discord
+import responses
 import os
 from secretkey import TOKEN
 
-intents = discord.Intents(messages=True, guilds=True)
-client = discord.Client(intents=intents)
+intents = discord.Intents(messages=True)
 
-@client.event
-async def on_message(message):
-    if message.content.startswith('$bridge'):
-        channel = message.channel
-        await channel.send("hey dirtbag")
+async def send(message):
+    try:
+        response = responses.respond(message)
+        await message.offer.send(response)
+    except Exception:
+        response = 'I didnt get what you said bro'
 
-def handle_response(msg) -> str:
-    message = message.lower()
+def run_bridgy_boi():
+    client = discord.Client(intents=intents)
+    
+    @client.event
+    async def on_ready():
+        print(f'{client} is up and running!')
 
-client.run(TOKEN)
+    @client.event
+    async def on_message(message):
+        if message.author == client.user:
+            return
+        
+        username = str(message.author)
+        user_message = str(message.content)
+        channel = str(message.channel)
+       
+        await send(user_message)
+
+    client.run(TOKEN)
+
+run_bridgy_boi()
+
