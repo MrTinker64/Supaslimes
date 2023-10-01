@@ -66,7 +66,7 @@ class runBridgeGame():
         # print out winners to discord
         print()
         print("Winners: ")
-        await discordPrint("Winners: ")
+        await discordPrint("Winners: ") # type: ignore
         for winner in winners:
             print(f"{winner.name} won with {winner.points} points!!")
             await discordPrint(f"{winner.name} won with {winner.points} points!!")

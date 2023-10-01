@@ -1,8 +1,15 @@
-def respond(msg):
+from Bridge import runBridgeGame
+
+async def respond(msg):
     print("test")
     new_message = msg.lower()
     players_game = new_message.split()
     #initializing game
+
+    #test
+    bridgeGame = runBridgeGame(["1", "2", "3", "4"])
+    await bridgeGame.startGame()
+
     if players_game[1] + players_game[2] == ('initialize game'):
         if players_game[3] == 'bridge' or 'hearts' or 'blackjack' and len(players_game) == 8:
             player1 = players_game[4]
@@ -16,4 +23,4 @@ def respond(msg):
 
 
 if __name__ == "__main__":
-    respond("$bridge initialize game bridge a b c d")
+    test = respond("$bridge initialize game bridge a b c d")
