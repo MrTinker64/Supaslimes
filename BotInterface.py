@@ -28,6 +28,11 @@ def run_bridgy_boi():
             # Send a response message
             await message.channel.send(f"{await react_to(message.content)}")
 
+    @client.event
+    async def discordPrint(message):
+        # send message to user
+        await message.channel.send(f"{await react_to(message.content)}")
+
     client.run(TOKEN)
 
 run_bridgy_boi()
