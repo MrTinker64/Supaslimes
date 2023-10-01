@@ -63,7 +63,10 @@ class runBridgeGame():
         winners = [player for player in self.players if player.points == highestScore]
 
         # print out winners to discord
-        print(winners)
+        print()
+        print("Winners: ")
+        for winner in winners:
+            print(f"{winner.name} won with {winner.points} points!!")
 
 
     def AI_turn_easy(self,player_number):

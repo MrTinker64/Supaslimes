@@ -44,6 +44,8 @@ class BridgePlayer(Player):
                     cardToPlay = self.play_card(Card(suit, rank))
                     if cardToPlay:
                         return cardToPlay
+                    else:
+                        print("sorry that card is not valid")
                 except:
                     pass
                 
@@ -52,12 +54,15 @@ class BridgePlayer(Player):
             # have them pick a card from their hand
             # require them to pick a card with suit matching suit variable
             print(self)
-            rank, of, suit = input(f"{self.name}, play a card: ").split()
+            
             while True:
                 try:
+                    rank, of, suit = input(f"{self.name}, play a card: ").split()
                     cardToPlay = self.play_card(Card(suit, rank))
-                    if cardToPlay and (not any([card.suit  == suitIn for card in self.hand]) or (cardToPlay.suit == suitIn and any([card.suit  == suitIn for card in self.hand]))):
+                    if cardToPlay and ((not any([card.suit  == suitIn for card in self.hand])) or (cardToPlay.suit == suitIn and any([card.suit  == suitIn for card in self.hand]))):
                         return cardToPlay
+                    else:
+                        print("sorry that card is not valid")
                 except:
                     pass
 
