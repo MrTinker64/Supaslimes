@@ -11,7 +11,7 @@ async def respond(msg):
     # bridgeGame = runBridgeGame(["1", "2", "3", "4"])
     # await bridgeGame.startGame()
 
-    if split_message[1] + split_message[2] == "initialize game":
+    if split_message[1] + split_message[2] == "initializegame":
         if split_message[3] == 'bridge' or 'hearts' or 'blackjack' and len(split_message) == 8:
             player1 = split_message[4]
             player2 = split_message[5]
