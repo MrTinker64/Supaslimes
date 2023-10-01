@@ -1,4 +1,5 @@
 def respond(msg):
+    print("test")
     new_message = msg.lower()
     players_game = new_message.split()
     #initializing game
