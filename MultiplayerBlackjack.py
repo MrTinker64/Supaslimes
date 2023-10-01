@@ -89,40 +89,16 @@ class Blackjack:
         player4_value = self.calculate_hand_value(self.player4_hand)
         dealer_value = self.calculate_hand_value(self.dealer_hand)
 
-        global player1_points
-        global dealer_points
-
         if player1_value > 21:
             print("Player busts! Dealer wins.")
-            player1_points+=1
         elif dealer_value > 21:
             print("Dealer busts! Player wins.")
-            dealer_points+=1
         elif player1_value > dealer_value:
             print("Player wins!")
-            player1_points+=1
         elif dealer_value > player1_value:
             print("Dealer wins.")
-            dealer_points+=1
         else:
             print("It's a tie!")
-            player1_points+=0.5
-            dealer_points+=0.5
-player1_points=0
-dealer_points=0
-play_again="Yes"
-while play_again=="Yes":
-    if __name__ == "__main__":
-        game = Blackjack()
-        game.play()
-        print("player points: " + str(player1_points))
-        print("dealer points: " + str(dealer_points))
-        play_again=input("Do you want to play again ('Yes' or 'No')?")
-print("dealer: " + str(dealer_points))
-print("player: " + str(player1_points))
-if dealer_points>player1_points:
-    print("DEALER WINS, BOZO!!!")
-elif dealer_points==player1_points:
-    print("UNSATISFYING TIE (a bit lame)")
-else:
-    print("CONGRATULATIONS!!! YOU WIN!!!")
+if __name__ == "__main__":
+    game = Blackjack()
+    game.play()
