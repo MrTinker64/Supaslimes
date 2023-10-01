@@ -9,5 +9,6 @@ intents.message_content = True
 
 @client.event
 async def discordPrint(message):
+    print("DISCORD!!!")
     # send message to user
     await message.channel.send(message.content)
