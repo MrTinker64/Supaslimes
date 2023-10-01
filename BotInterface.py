@@ -4,8 +4,14 @@ import os
 from secretkey import TOKEN
 
 intents = discord.Intents(messages=True)
+client = discord.Client(intents=intents)
 
 intents.message_content = True
+
+@client.event
+async def discordPrint(message):
+    # send message to user
+    await message.channel.send(f"{await react_to(message.content)}")
 
 async def react_to(message):
     response = responses.respond(message)
@@ -28,10 +34,6 @@ def run_bridgy_boi():
             # Send a response message
             await message.channel.send(f"{await react_to(message.content)}")
 
-    @client.event
-    async def discordPrint(message):
-        # send message to user
-        await message.channel.send(f"{await react_to(message.content)}")
 
     client.run(TOKEN)
 
