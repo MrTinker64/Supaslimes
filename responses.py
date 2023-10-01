@@ -1,30 +1,20 @@
 from Bridge import runBridgeGame
-from BotPrint import discordPrint
 
 async def respond(msg):
+    new_message = msg.lower().split()
 
-    await discordPrint("test")
-
-    print("test")
-    new_message = msg.lower()
-    players_game = new_message.split()
-    #initializing game
-
-    #test
-    bridgeGame = runBridgeGame(["1", "2", "3", "4"])
-    await bridgeGame.startGame()
-
-    if players_game[1] + players_game[2] == ('initialize game'):
-        if players_game[3] == 'bridge' or 'hearts' or 'blackjack' and len(players_game) == 8:
-            player1 = players_game[4]
-            player2 = players_game[5]
-            player3 = players_game[6]
-            player4 = players_game[7]
-            game = players_game[1]
-            return(f'{players_game[1]} Started! Good luck players!')
-    else:
-        return("Please input a valid game and 4 players!")
-
+    # Verify if the message format is correct
+    if len(new_message) != 8:
+        return "Please input a valid game and 4 players!"
+    
+    game, action, game_type, player1, player2, player3, player4 = new_message[1:8]
+    
+    if action == 'initialize' and game_type in ['bridge', 'hearts', 'blackjack']:
+        bridgeGame = runBridgeGame([player1, player2, player3, player4])
+        await bridgeGame.startGame()
+        return f'{game_type.capitalize()} Game Started! Good luck players!'
+    
+    return "Please input a valid game and 4 players!"
 
 if __name__ == "__main__":
     test = respond("$bridge initialize game bridge a b c d")

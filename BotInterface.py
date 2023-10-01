@@ -1,38 +1,25 @@
 import discord
-import responses
-import os
+from responses import respond
 from secretkey import TOKEN
 
-intents = discord.Intents(messages=True)
+intents = discord.Intents(messages=True, message_content=True)
 client = discord.Client(intents=intents)
 
 @client.event
-async def discordPrint(message):
-    # send message to user
-    await message.channel.send(f"{await react_to(message.content)}")
+async def on_ready():
+    print(f'{client.user.name} is up and running!')
 
-async def react_to(message):
-    return(responses.respond(message))
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return  # Ignore messages from the bot itself
 
-def run_bridgy_boi():
-    client = discord.Client(intents=intents)
-    
-    @client.event
-    async def on_ready():
-        print(f'{client} is up and running!')
+    print(message.content)
 
-    @client.event
-    async def on_message(message):
-        if message.author == client.user:
-            return  # Ignore messages from the bot itself
-        print(message.content)
+    if message.content.startswith('$bridge'):
+        # Send a response message
+        response = await respond(message.content)
+        await message.channel.send(response)
 
-        if message.content.startswith('$bridge'):
-            # Send a response message
-            await message.channel.send(f"{await react_to(message.content)}")
-
-
+if __name__ == "__main__":
     client.run(TOKEN)
-
-run_bridgy_boi()
-
