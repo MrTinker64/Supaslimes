@@ -18,6 +18,13 @@ for player in players:
     
 starting_player = players[random.randrange(4)]
 
+def check_suit(cards, suit):
+    list = []
+    for card in cards:
+        if card.suit == suit:
+            list.append(card)
+    return list
+
 def trick(starting_index):
     trick = []
     lead_suit = ""
@@ -33,17 +40,25 @@ def trick(starting_index):
         if count == 1:
             lead_suit = suit
         count += 1
-        if suit == lead_suit and Card(suit, rank).numrank > max([card.numrank for card in trick]):
-            player_to_win_trick = player
     
-    player_to_win_trick.recieve_trick(trick)
-    print("Player who won: ", player_to_win_trick.name)
     print(trick)
+    trick = check_suit(trick, lead_suit)
+    highest_card_value = max(card.numrank for card in trick if card.suit == lead_suit)
+    highest_card = Card("Clubs", "2")
+    for card in trick:
+        if card.numrank == highest_card_value:
+            highest_card = card
+    print(f"{players[starting_index].name} started")
+    player_to_win_trick = players[trick.index(highest_card)]
+    # player_to_win_trick.recieve_trick(trick)
+    print(trick)
+    print(f"{player_to_win_trick.name} won the trick")
     trick.clear
+    count = 1
 
 trick(players.index(starting_player))
-for player in players:
-    player.count_points
-    print(player.name, player.points)
+# for player in players:
+#     player.count_points
+#     print(player.name, player.points)
     
 # of Spades

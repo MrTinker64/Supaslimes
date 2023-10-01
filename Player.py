@@ -13,7 +13,6 @@ class Player:
         for card_in_hand in self.hand:
             if card.__dict__ == card_in_hand.__dict__:
                 self.hand.remove(card_in_hand)
-                print("Yay!")
                 return card
         
         raise ValueError(f"{card} not in player's hand!")
