@@ -55,11 +55,11 @@ class Blackjack:
 
         #Player's turn
         while self.calculate_hand_value(self.player_hand) < 21:
-            choice = input("Do you want to 'Hit' or 'Stand'? ").lower()
-            if choice == 'hit':
+            choice = input("Do you want to 'Hit' or 'Stand'? ")
+            if choice == 'Hit':
                 self.player_hand.extend(self.deck.draw(1))
                 self.display_hands()
-            elif choice == 'stand':
+            elif choice == 'Stand':
                 break
             else:
                 print("Invalid choice. Please enter 'Hit' or 'Stand'.")
