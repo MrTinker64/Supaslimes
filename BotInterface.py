@@ -14,8 +14,7 @@ async def discordPrint(message):
     await message.channel.send(f"{await react_to(message.content)}")
 
 async def react_to(message):
-    response = responses.respond(message)
-    return(response)
+    return(responses.respond(message))
 
 def run_bridgy_boi():
     client = discord.Client(intents=intents)
