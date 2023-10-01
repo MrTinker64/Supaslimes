@@ -37,41 +37,56 @@ class Blackjack:
         return total_value
 
     def display_hands(self, player=None, show_dealer=False):
-        if player_number is not None:
-            for card in self.var(player)_hand
+        if player is not None:
+            for card in self.var(player)_hand:
                 print(card)
         elif show_dealer:
             self.dealer.show_hand()
         else:
             self.dealer.show_one_card()
+    
+    def player_move(player):
+        if self.calculate_hand_value(self.var(player)_hand) < 21:
+            self.display_hands(self, player)
+            choice = input(str(player) + ", do you want to 'Hit' or 'Stand'? ")
+            if choice == 'Hit':
+                self.var(player)_hand.extend(self.deck.draw(1))
+                self.display_hands(self, player)
+            elif choice == 'Stand':
+                break
+            else:
+                print("Invalid choice. Please enter 'Hit' or 'Stand'.")
+    
+    def dealer_move():
+        if self.calculate_hand_value(self.dealer_hand) < 17: #dealer needs to hit until they have 17+ points
+            self.dealer_hand.extend(self.deck.draw(1))
 
 #playing
     def play(self):
         current_player=#THING -- TO ADD
         #Let the games begin
         self.deal_initial_cards()
-        self.display_hands(self, current_player)
 
         #Players' turns
         while self.calculate_hand_value(self.player1_hand) < 21 or self.calculate_hand_value(self.player2_hand) < 21 or self.calculate_hand_value(self.player3_hand) < 21 or self.calculate_hand_value(self.player4_hand) < 21:
-            choice = input(str(current_player) + ", do you want to 'Hit' or 'Stand'? ")
-            if choice == 'Hit':
-                self.var(current_player)_hand.extend(self.deck.draw(1))
-                self.display_hands(self, current_player)
-            elif choice == 'Stand':
-                break
-            else:
-                print("Invalid choice. Please enter 'Hit' or 'Stand'.")
-
-        # Dealer's turn
-        while self.calculate_hand_value(self.dealer_hand) < 17: #dealer needs to hit until they have 17+ points
-            self.dealer_hand.extend(self.deck.draw(1))
+            player_move(self.player1) #FIX THIS SO THE INPUT IS VALID
+            player_move(self.player2)
+            player_move(self.player3)
+            player_move(self.player4)
+            dealer_move()
 
         # Display the final hands
-        self.display_hands(show_dealer=True)
+        self.display_hands(self, self.player1)
+        self.display_hands(self, self.player2)
+        self.display_hands(self, self.player3)
+        self.display_hands(self, self.player4, True)
+        
 
         # Determining the winner winner chicken dinner (bakaw)
         player1_value = self.calculate_hand_value(self.player1_hand)
+        player2_value = self.calculate_hand_value(self.player2_hand)
+        player3_value = self.calculate_hand_value(self.player3_hand)
+        player4_value = self.calculate_hand_value(self.player4_hand)
         dealer_value = self.calculate_hand_value(self.dealer_hand)
 
         global player1_points
