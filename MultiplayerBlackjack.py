@@ -47,17 +47,17 @@ class Blackjack:
 
 #playing
     def play(self):
+        current_player=#THING -- TO ADD
         #Let the games begin
         self.deal_initial_cards()
-        self.display_hands()
+        self.display_hands(self, current_player)
 
-        #Player's turn
-        while self.calculate_hand_value(self.player1_hand) < 21: #MAKE IT ASK P1, P2, P3, P4, P1...
-    
-            choice = input("Do you want to 'Hit' or 'Stand'? ")=
+        #Players' turns
+        while self.calculate_hand_value(self.player1_hand) < 21 or self.calculate_hand_value(self.player2_hand) < 21 or self.calculate_hand_value(self.player3_hand) < 21 or self.calculate_hand_value(self.player4_hand) < 21:
+            choice = input(str(current_player) + ", do you want to 'Hit' or 'Stand'? ")
             if choice == 'Hit':
-                self.player1_hand.extend(self.deck.draw(1))
-                self.display_hands()
+                self.var(current_player)_hand.extend(self.deck.draw(1))
+                self.display_hands(self, current_player)
             elif choice == 'Stand':
                 break
             else:
