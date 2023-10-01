@@ -5,12 +5,11 @@ from secretkey import TOKEN
 
 intents = discord.Intents(messages=True)
 
-async def send(message):
-    try:
-        response = responses.respond(message)
-        await message.offer.send(response)
-    except Exception:
-        response = 'I didnt get what you said bro'
+intents.message_content = True
+
+async def react_to(message):
+    response = responses.respond(message)
+    return(response)
 
 def run_bridgy_boi():
     client = discord.Client(intents=intents)
@@ -22,13 +21,12 @@ def run_bridgy_boi():
     @client.event
     async def on_message(message):
         if message.author == client.user:
-            return
-        
-        username = str(message.author)
-        user_message = str(message.content)
-        channel = str(message.channel)
-       
-        await send(user_message)
+            return  # Ignore messages from the bot itself
+        print(message.content)
+
+        if message.content.startswith('$bridge'):
+            # Send a response message
+            await message.channel.send(f"{await react_to(message.content)}")
 
     client.run(TOKEN)
 
