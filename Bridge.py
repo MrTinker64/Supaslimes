@@ -40,7 +40,8 @@ class runBridgeGame():
                 cardValues.append(0)
         playerOrder[cardValues.index(max(cardValues))].add_points(1)
         
-        
+    def gameOver(self):
+        return any([len(player.hand) == 0 for player in self.players])
         
 
     def startGame(self):
@@ -54,9 +55,14 @@ class runBridgeGame():
             self.declaringSide = 0 if self.initialTeamPointSum(0) > self.initialTeamPointSum(1) else 1
             self.declarer = 0 if self.teams[self.declaringSide][0].add_points_from_hand() > self.teams[self.declaringSide][1].add_points_from_hand() else 1
         
-        self.alephSuit = self.teams[self.declaringSide][self.declarer].fromContract()
+        while not self.gameOver():
+            self.alephSuit = self.teams[self.declaringSide][self.declarer].fromContract()
+            self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
+        
+        highestScore = max([player.points for player in self.players])
+        winners = [player for player in self.players if player.points == highestScore]
 
-        self.trickRound(self.teamIndexes[self.declaringSide][self.declarer] + 1)
+        # print out winners to discord
 
 
     def AI_turn_easy(self,player_number):
