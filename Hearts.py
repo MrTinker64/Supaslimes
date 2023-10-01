@@ -16,7 +16,7 @@ for player in players:
     player.receive_cards(deck.draw(13))
     player.sort_hand()
     
-starting_player = players[0]
+starting_player = players[random.randrange(4)]
 
 def check_suit(cards, suit):
     list = []
@@ -27,7 +27,7 @@ def check_suit(cards, suit):
 
 def count_points_for(player, trick):
     for card in trick:
-        if card.suit == "Heart":
+        if card.suit == "Hearts":
             player.add_points(1)
         if card.suit == "Spades" and card.rank == "Queen":
             player.add_points(13)
@@ -48,9 +48,8 @@ def trick(starting_index):
 
     for player in reordered_players:
         # rank, of, suit = input(f"{player}, play a card: ").split()
-        played_card = player.hand[7]
-        rank = played_card.rank
-        suit = played_card.suit
+        played_card = random.choice(player.hand)
+        rank, suit = played_card.rank, played_card.suit
         player.play_card(Card(suit, rank))
         trick.append(Card(suit, rank))
         if count == 1:
@@ -58,16 +57,21 @@ def trick(starting_index):
         count += 1
     
     print(trick)
+    print([player.name for player in reordered_players])
     suited_trick = check_suit(trick, lead_suit)
-    highest_card = get_highest_card(trick, lead_suit)
-    print(f"{players[starting_index].name} started")
-    player_to_win_trick = players[trick.index(highest_card)]
-    print(suited_trick)
+    highest_card = get_highest_card(suited_trick, lead_suit)
+    player_to_win_trick = reordered_players[trick.index(highest_card)]
     print(f"{player_to_win_trick.name} won the trick")
+    count_points_for(player_to_win_trick, trick)
     trick.clear
     count = 1
+    return player_to_win_trick  
 
-trick(players.index(starting_player))
+first_player = trick(players.index(starting_player))
+
+for i in range(12):
+    first_player = trick(players.index(first_player))
+
 for player in players:
     print(player.name, player.points)
     
