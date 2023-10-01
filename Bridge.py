@@ -2,6 +2,7 @@ from GamePlayers import BridgePlayer
 from Deck import Deck
 from Player import Player
 import random
+from BotInterface import discordPrint
 
 class runBridgeGame():
     players = []
@@ -44,7 +45,7 @@ class runBridgeGame():
         return any([len(player.hand) == 0 for player in self.players])
         
 
-    def startGame(self):
+    async def startGame(self):
         deck = Deck()
         while self.initialTeamPointSum(0) == self.initialTeamPointSum(1):
             deck.resetDeck()
@@ -65,8 +66,10 @@ class runBridgeGame():
         # print out winners to discord
         print()
         print("Winners: ")
+        await discordPrint("Winners: ")
         for winner in winners:
             print(f"{winner.name} won with {winner.points} points!!")
+            await discordPrint(f"{winner.name} won with {winner.points} points!!")
 
 
     def AI_turn_easy(self,player_number):
@@ -74,4 +77,4 @@ class runBridgeGame():
 
 if __name__ == "__main__":
     bridgeGame = runBridgeGame(["1", "2", "3", "4"])
-    bridgeGame.startGame()
+    test = bridgeGame.startGame()

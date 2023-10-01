@@ -1,6 +1,7 @@
 from Player import Player
 import random
 from Deck import Card
+from BotInterface import discordPrint
 
 class BridgePlayer(Player):
     def add_points_from_hand(self):
@@ -33,10 +34,11 @@ class BridgePlayer(Player):
            suit = "Diamonds"
         return suit
     
-    def playTrick(self, suitIn):
+    async def playTrick(self, suitIn):
         if suitIn == "n":
             # kyle have them pick a card from their hand
             print(self)
+            await discordPrint(self)
             
             while True:
                 try:
@@ -46,6 +48,7 @@ class BridgePlayer(Player):
                         return cardToPlay
                     else:
                         print("sorry that card is not valid")
+                        await discordPrint("sorry that card is not valid")
                 except:
                     pass
                 
@@ -54,6 +57,7 @@ class BridgePlayer(Player):
             # have them pick a card from their hand
             # require them to pick a card with suit matching suit variable
             print(self)
+            await discordPrint(self)
             
             while True:
                 try:
@@ -63,6 +67,7 @@ class BridgePlayer(Player):
                         return cardToPlay
                     else:
                         print("sorry that card is not valid")
+                        await discordPrint("sorry that card is not valid")
                 except:
                     pass
 
