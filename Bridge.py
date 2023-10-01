@@ -28,6 +28,7 @@ class runBridgeGame():
         card2 = self.players[(startingPlayer + 1) % 4].playTrick(previousSuit)
         card3 = self.players[(startingPlayer + 2) % 4].playTrick(previousSuit)
         card4 = self.players[(startingPlayer + 3) % 4].playTrick(previousSuit)
+        playerOrder = [self.players[(startingPlayer) % 4], self.players[(startingPlayer + 1) % 4], self.players[(startingPlayer + 2) % 4], self.players[(startingPlayer + 3) % 4]]
         cardsPlayed = [card1, card2, card3, card4]
         cardValues = []
         for card in cardsPlayed:
@@ -37,6 +38,9 @@ class runBridgeGame():
                 cardValues.append(Deck.RANKS.index(card.rank))
             else:
                 cardValues.append(0)
+        playerOrder[cardValues.index(max(cardValues))].add_points(1)
+        
+        
         
 
     def startGame(self):
