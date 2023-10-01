@@ -83,7 +83,6 @@ class Blackjack:
         self.display_hands(self, self.player2)
         self.display_hands(self, self.player3)
         self.display_hands(self, self.player4, True)
-        
 
         # Determining the winner winner chicken dinner (bakaw)
         player1_value = self.calculate_hand_value(self.player1_hand)
