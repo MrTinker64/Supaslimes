@@ -41,9 +41,12 @@ class Blackjack:
             for card in self.var(player)_hand:
                 print(card)
         elif show_dealer:
-            self.dealer.show_hand()
+            for card in self.dealer_hand:
+                print(card)
+            print("Total Value:" + str(self.calculate_hand_value(self.dealer_hand)))
         else:
-            self.dealer.show_one_card()
+            print(str(self.dealer_hand[0])) #shows dealer's first card
+            print("Total Value: ???") #it's a mystery
     
     def player_move(player):
         if self.calculate_hand_value(self.var(player)_hand) < 21:
