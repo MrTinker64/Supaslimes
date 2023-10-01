@@ -18,7 +18,7 @@ async def on_message(message):
 
     if message.content.startswith('$bridge'):
         # Send a response message
-        response = await respond(message.content)
+        response = respond(message.content)
         await message.channel.send(response)
 
 if __name__ == "__main__":
