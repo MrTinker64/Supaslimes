@@ -2,7 +2,7 @@ from GamePlayers import BridgePlayer
 from Deck import Deck
 from Player import Player
 import random
-from BotInterface import discordPrint
+from BotPrint import discordPrint
 
 class runBridgeGame():
     players = []

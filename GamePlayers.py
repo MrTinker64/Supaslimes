@@ -1,7 +1,7 @@
 from Player import Player
 import random
 from Deck import Card
-from BotInterface import discordPrint
+from BotPrint import discordPrint
 
 class BridgePlayer(Player):
     def add_points_from_hand(self):
