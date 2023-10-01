@@ -1,6 +1,10 @@
 from Bridge import runBridgeGame
+from BotPrint import discordPrint
 
 async def respond(msg):
+
+    await discordPrint("test")
+
     print("test")
     new_message = msg.lower()
     players_game = new_message.split()
