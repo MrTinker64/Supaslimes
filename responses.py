@@ -2,14 +2,13 @@ from Bridge import runBridgeGame
 
 async def respond(msg):
     print("test")
-    # new_message = msg.lower()
-    new_message = "$bridge initialize game bridge a b c d"
+    new_message = msg.lower()
     split_message = new_message.split()
     #initializing game
 
     #test
-    # bridgeGame = runBridgeGame(["1", "2", "3", "4"])
-    # await bridgeGame.startGame()
+    bridgeGame = runBridgeGame(["1", "2", "3", "4"])
+    await bridgeGame.startGame()
 
     if split_message[1] + split_message[2] == "initializegame":
         if split_message[3] == 'bridge' or 'hearts' or 'blackjack' and len(split_message) == 8:
