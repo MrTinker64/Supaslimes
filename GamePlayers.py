@@ -1,5 +1,6 @@
 from Player import Player
 import random
+from Deck import Card
 
 class BridgePlayer(Player):
     def add_points_from_hand(self):
@@ -32,17 +33,25 @@ class BridgePlayer(Player):
            suit = "Diamonds"
         return suit
     
-    def playTrick(self, suit):
-        if suit == "n":
+    def playTrick(self, suitIn):
+        if suitIn == "n":
             # kyle have them pick a card from their hand
-            trickCard = random.choice(self.hand)
-
-            return trickCard
+            print(self)
+            rank, of, suit = input(f"{self.name}, play a card: ").split()
+            while True:
+                cardToPlay = self.play_card(Card(suit, rank))
+                if cardToPlay:
+                    return cardToPlay
+                
         else:
-            trickCard = random.choice(self.hand)
             # have them pick a card from their hand
             # require them to pick a card with suit matching suit variable
-            return trickCard
+            print(self)
+            rank, of, suit = input(f"{self.name}, play a card: ").split()
+            while True:
+                cardToPlay = self.play_card(Card(suit, rank))
+                if cardToPlay and (not any([card.suit  == suitIn for card in self.hand]) or (cardToPlay.suit == suitIn and any([card.suit  == suitIn for card in self.hand]))):
+                    return cardToPlay
 
         
 
