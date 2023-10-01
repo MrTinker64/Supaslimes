@@ -37,11 +37,16 @@ class BridgePlayer(Player):
         if suitIn == "n":
             # kyle have them pick a card from their hand
             print(self)
-            rank, of, suit = input(f"{self.name}, play a card: ").split()
+            
             while True:
-                cardToPlay = self.play_card(Card(suit, rank))
-                if cardToPlay:
-                    return cardToPlay
+                try:
+                    rank, of, suit = input(f"{self.name}, play a card: ").split()
+                    cardToPlay = self.play_card(Card(suit, rank))
+                    if cardToPlay:
+                        return cardToPlay
+                except:
+                    pass
+                
                 
         else:
             # have them pick a card from their hand
@@ -49,9 +54,12 @@ class BridgePlayer(Player):
             print(self)
             rank, of, suit = input(f"{self.name}, play a card: ").split()
             while True:
-                cardToPlay = self.play_card(Card(suit, rank))
-                if cardToPlay and (not any([card.suit  == suitIn for card in self.hand]) or (cardToPlay.suit == suitIn and any([card.suit  == suitIn for card in self.hand]))):
-                    return cardToPlay
+                try:
+                    cardToPlay = self.play_card(Card(suit, rank))
+                    if cardToPlay and (not any([card.suit  == suitIn for card in self.hand]) or (cardToPlay.suit == suitIn and any([card.suit  == suitIn for card in self.hand]))):
+                        return cardToPlay
+                except:
+                    pass
 
         
 
